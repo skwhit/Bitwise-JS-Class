@@ -23,9 +23,9 @@ document.body.innerHTML = header + section + footer;
 
 document.querySelector("body").style.color = "red";
 
-
-
-
-
-
 // document.querySelector("body").style.backgroundColor = "lightblue";
+
+let longWord = 'Supercalifragilisticexpialidocious';
+console.log(longWord.length);
+console.log(54);
+console.log(548984398483564646546546546464n);
