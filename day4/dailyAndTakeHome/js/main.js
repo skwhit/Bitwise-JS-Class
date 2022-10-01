@@ -7,11 +7,25 @@ let num = 0; //num will change when user is prompted
 numOne = numPrompt("");
 numTwo = numPrompt("second ");
 
+// function numPrompt(promptNumber) {
+//     num = prompt(`Please enter a ${promptNumber}number`);
+//     console.log(num);
+//     if (isNaN(num)||num=="") {
+//         alert('Your input is not a number');
+//         numPrompt(promptNumber);
+//     } 
+//     return num; //returns user input to numOne and numTwo if passes checks
+// }
+
 function numPrompt(promptNumber) {
-    num = prompt(`Please enter a ${promptNumber}number`);
+    document.querySelector("h2").innerHTML = `Please enter a ${promptNumber}number`;
+    // num = prompt(`Please enter a ${promptNumber}number`);
+    document.getElementById("myButton").addEventListener("click", function () {
+        num = document.getElementById("myText").value;
+    });
     console.log(num);
     if (isNaN(num)||num=="") {
-        alert('Your input is not a number');
+        document.querySelector("h2").innerHTML = `Your input is not a number, please enter a number`;
         numPrompt(promptNumber);
     } 
     return num; //returns user input to numOne and numTwo if passes checks
@@ -35,4 +49,4 @@ else {
 
 // Alert the larger number
 console.log(result);
-alert(result);
+// alert(result);
