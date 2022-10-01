@@ -9,6 +9,31 @@
     <script  defer src="./js/main.js"></script>
 </head>
 <body>
-    
+    <div class="modal">
+        <h2>Are you sure?</h2>
+        <input type="text" id="myText">
+        <button type="button" id="myButton">Submit</button>
+        
+    </div>
+    <style>
+        .hidden {
+            display: none;
+        }
+        .modal {
+            position: absolute;
+            display: fixed;
+            
+            padding: 20px;
+            width: 40%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba(48, 103, 146, 0.7);
+            border-radius: 5px;
+        }
+        button {
+            margin: 10px 0;
+        }
+    </style>
 </body>
 </html>
