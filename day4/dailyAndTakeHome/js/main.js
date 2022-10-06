@@ -1,48 +1,62 @@
-// ------------ DAILY CHALLENGE ------------
-const h1 = document.createElement("h1");
-document.body.append(h1);
-h1.innerHTML = "";
-h1.setAttribute(
-  "style",
-  "margin: 0; padding: 0; color: blue; display: flex; justify-content: center; align-items: center; height: 100vh;font-size: 4rem; text-align: center;"
-);
-h1.innerHTML = processor();
+const h1 = document.querySelector("h1");
+const label = document.querySelector("label");
+const input = document.querySelector("input");
+const button = document.querySelector("button");
+let num = 0;
+let counter = 0;
+let numbers = [];
+let result;
+label.innerHTML = "Please enter a number";
 
-// Prompt the user for two different numbers and display which, if any, is larger
-function processor() {
-  let num = 0; //num will change when user is prompted
-  let numOne = numPrompt("Please enter a number");
-  let numTwo = numPrompt("Please enter a second number");
-
-  function numPrompt(message) {
-    num = prompt(message);
-    if (isNaN(num) || num === "") {
-      alert("Your input is not a number");
-      numPrompt(message); //function is called again if user input is invalid
-    } else if (num === null) {
-      return null; //null will return if user cancels a prompt
-    }
-    return num; //returns user input to numOne and numTwo if passes checks
+input.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    button.click();
   }
+});
 
-  if (numOne !== null && numTwo !== null) {
-    // Convert the values to integers
-    // Store the two integers as variables
-    let intOne = parseInt(numOne);
-    let intTwo = parseInt(numTwo);
+button.addEventListener("click", () => {
+  console.log(input.value);
+  if (/\//.test(input.value)) {
+    num = input.value.split("/");
+    num = Number(num[0], 10) / Number(num[1], 10);
+  } else if (/\,/.test(input.value)) {
+    num = input.value.split(",");
+    num = Number(num.join(""));
+  } else {
+    num = Number(input.value);
+  }
+  console.log(num);
+  input.value = "";
+  input.focus();
 
-    // Compare the two numbers
-    if (intTwo === intOne) {
-      result = "These numbers are the same.";
-    } else if (intTwo > intOne) {
-      result = `${intTwo} is larger than ${intOne}`;
+  if (counter < 2) {
+    if (!isNaN(num) && num != 0) {
+      numbers.push(num);
+      counter++;
     } else {
-      result = `${intOne} is larger than ${intTwo}`;
+      alert("Your input is not a number, please enter a number");
     }
-
-    // Alert the larger number
-    console.log(result);
-    return result;
   }
-  return "Process cancelled. Please reload the page if you wish to try again.";
-}
+
+  if (counter === 2) {
+    if (numbers[1] === numbers[0]) {
+      result = `${numbers[1]} is equal to ${numbers[0]}`;
+    } else if (numbers[1] > numbers[0]) {
+      result = `${numbers[1]} is larger than ${numbers[0]}`;
+    } else {
+      result = `${numbers[0]} is larger than ${numbers[1]}`;
+    }
+    console.log(result);
+    h1.innerHTML = result;
+
+    counter = 0;
+    numbers = [];
+  }
+  if (counter === 1) {
+    label.innerHTML = "Please enter a second number";
+  }
+  if (counter === 0) {
+    label.innerHTML = "Please enter a number";
+  }
+});
