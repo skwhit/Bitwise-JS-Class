@@ -1,36 +1,16 @@
-const h1Text1 = createh1();
-let input1 = createTextInput();
-const button1 = createButton();
-const p1 = createParagraph();
+const h1Text1 = displayElement('h1','Please enter a password');
+let input1 = displayElement('input');
+const button1 = displayElement('button','Submit (Press Enter)');
+const p1 = displayElement('p','Password requirements: 6-20 characters. Starts with a letter.');
 let password;
 input1.focus();
+button1.addEventListener('click', passwordValidator);
 
-function createh1() {
-    const h1 = document.createElement('h1');
-    h1.textContent = "Please enter a password:";
-    document.body.appendChild(h1);
-    return h1;
-}
-
-function createTextInput() {
-    const input = document.createElement('input');
-    document.body.appendChild(input);
-    return input;
-}
-
-function createButton() {
-    const button = document.createElement('button');
-    button.textContent = 'Submit (Press Enter)';
-    document.body.appendChild(button);
-    button.addEventListener('click', passwordValidator);
-    return button;
-}
-
-function createParagraph() {
-    const p = document.createElement('p');
-    p.textContent = "Password requirements: 6-20 characters. Starts with a letter.";
-    document.body.appendChild(p);
-    return p;
+function displayElement(element, content) {
+    const item = document.createElement(element);
+    item.textContent = `${content}`;
+    document.body.appendChild(item);
+    return item;
 }
 
 input1.addEventListener("keypress", function (event) {
